@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMAN — Faith in Every Moment</title>
+<style>
+  :root {
+    --bg:         #0b2318;
+    --bg2:        #0f2d1e;
+    --surface:    #163825;
+    --border:     #254530;
+    --gold:       #c9a24b;
+    --gold-light: #e2c070;
+    --gold-dim:   #7a6030;
+    --text:       #e8e0d0;
+    --text-sub:   #a09878;
+    --text-muted: #5a7060;
+    --white:      #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(11, 35, 24, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-family: Georgia, serif;
+    text-decoration: none;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    color: var(--text-sub);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--gold); }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,162,75,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .hero-arabic {
+    font-size: clamp(22px, 4vw, 32px);
+    color: var(--gold-light);
+    font-family: Georgia, serif;
+    margin-bottom: 20px;
+    opacity: 0.85;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -2px;
+    line-height: 1.0;
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-tagline {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text-sub);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 17px;
+    color: var(--text-sub);
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 48px;
+  }
+
+  .hero-badge span { color: var(--gold); font-weight: 700; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── Section shared ── */
+  section {
+    padding: 100px 24px;
+  }
+
+  .section-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 14px;
+    font-family: Georgia, serif;
+    text-wrap: balance;
+    letter-spacing: -0.5px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-sub);
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 60px;
+    line-height: 1.75;
+  }
+
+  /* ── Features ── */
+  .features-bg { background: var(--bg2); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: border-color 0.2s;
+  }
+
+  .feature-card:hover { border-color: var(--gold-dim); }
+
+  .feature-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    color: var(--text-sub);
+    line-height: 1.7;
+  }
+
+  /* ── Stats ── */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 160px;
+    padding: 40px 24px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-val {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--gold);
+    font-family: Georgia, serif;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── Privacy strip ── */
+  .privacy-strip {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .privacy-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .privacy-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-sub);
+  }
+
+  .privacy-item-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-family: Georgia, serif;
+    margin-bottom: 8px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .footer-link {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── Divider ── */
+  .gold-line {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 48px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 20px; }
+    .stat { min-width: 140px; padding: 28px 16px; }
+    .stat-val { font-size: 28px; }
+    .privacy-row { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="#">IMAN</a>
+  <a class="nav-link" href="privacy.html">Privacy Policy</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-eyebrow">Muslim Companion App</p>
+  <p class="hero-arabic">بسم الله الرحمن الرحيم</p>
+  <h1>IMAN</h1>
+  <p class="hero-tagline">Faith in Every Moment</p>
+  <p class="hero-desc">Your complete companion for prayer times, Quran, Qibla direction, daily dhikr, and a growing Muslim community — all in one beautifully crafted app.</p>
+  <div class="hero-badge">
+    <span>🕌</span> Coming soon to the <span>App Store</span> · <span>10-day free trial</span> · <span>$4/month or $29.99/year</span>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-bg">
+  <div class="section-inner">
+    <p class="section-eyebrow">Everything You Need</p>
+    <h2 class="section-title">Built for the Modern Muslim</h2>
+    <p class="section-sub">Every feature designed to help you stay connected to your faith throughout the day.</p>
+    <div class="gold-line"></div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🕐</div>
+        <div class="feature-title">Accurate Prayer Times</div>
+        <div class="feature-desc">Location-based prayer times using trusted calculation methods — Muslim World League, Egyptian, Hanafi, and more.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <div class="feature-title">Full Quran</div>
+        <div class="feature-desc">Browse all 114 surahs and 30 juz with Arabic text, English translation, and audio recitation.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧭</div>
+        <div class="feature-title">Qibla Compass</div>
+        <div class="feature-desc">Real-time compass that points toward the Kaaba from anywhere in the world using your device's magnetometer.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📿</div>
+        <div class="feature-title">Tasbih Counter</div>
+        <div class="feature-desc">Digital dhikr counter with daily suggestions for Subhanallah, Alhamdulillah, and Allahu Akbar.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-title">Muslim Community</div>
+        <div class="feature-desc">Share reminders, questions, and reflections with a community of believers. Post, like, and reply.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">Prayer Streaks & XP</div>
+        <div class="feature-desc">Track your daily prayers, build streaks, earn XP, and grow through levels from Seeker to Enlightened.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title">8 Languages</div>
+        <div class="feature-desc">Fully available in English, French, Arabic, Urdu, Indonesian, Turkish, Bengali, and Persian.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-title">Prayer Notifications</div>
+        <div class="feature-desc">Get reminded at every prayer time in your language. Includes a special Jumu'ah reminder every Friday.</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-val">5</div>
+        <div class="stat-label">Daily Prayers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">114</div>
+        <div class="stat-label">Surahs</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">8</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">∞</div>
+        <div class="stat-label">Duas & Dhikr</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Privacy strip -->
+<section class="privacy-strip">
+  <div class="section-inner">
+    <div class="privacy-row">
+      <div class="privacy-item"><div class="privacy-item-dot"></div>No ads, ever</div>
+      <div class="privacy-item"><div class="privacy-item-dot"></div>No data selling</div>
+      <div class="privacy-item"><div class="privacy-item-dot"></div>Location stays on your device</div>
+      <div class="privacy-item"><div class="privacy-item-dot"></div>10-day free trial</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">IMAN</div>
+  <div class="footer-tagline">Faith in Every Moment</div>
+  <div class="footer-links">
+    <a class="footer-link" href="privacy.html">Privacy Policy</a>
+    <a class="footer-link" href="mailto:muslimsalahapp@gmail.com">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 ABS. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
